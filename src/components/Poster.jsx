@@ -12,12 +12,14 @@ function Posters({ posterInfo }) {
     vote_average,
   } = posterInfo;
 
+  const searchParams = `?id=${id}&type=${first_air_date ? "tv" : "movie"}`;
+
   return (
     <li className="posters_item">
       <Link
         to={{
           pathname: "/title",
-          search: `?id=${id}`,
+          search: searchParams,
         }}
       >
         <img

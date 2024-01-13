@@ -38,7 +38,7 @@ function Home() {
   const contents =
     location.pathname === "/" || location.pathname === "/movies"
       ? "popularMovies"
-      : "popularShows";
+      : "popularTVShows";
 
   const [state, dispatch] = useReducer(postersReducer, initialState);
 

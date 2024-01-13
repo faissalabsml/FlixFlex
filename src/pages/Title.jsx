@@ -33,11 +33,12 @@ function Title() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const titleId = searchParams.get("id");
+  const type = searchParams.get("type");
 
   const [state, dispatch] = useReducer(titleReducer, initialState);
 
   useEffect(() => {
-    getDetails(titleId)
+    getDetails(type, titleId)
       .then((result) => {
         console.log(result);
         dispatch({ type: "success", title: result });

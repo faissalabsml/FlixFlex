@@ -6,7 +6,7 @@ const url = "https://api.themoviedb.org/3";
 
 const endpoints = {
   popularMovies: `${url}/movie/popular?api_key=${api_key}`,
-  popularShows: `${url}/tv/popular?api_key=${api_key}`,
+  popularTVShows: `${url}/tv/popular?api_key=${api_key}`,
 };
 
 export function getPosters(type) {
@@ -15,9 +15,9 @@ export function getPosters(type) {
   });
 }
 
-export function getDetails(id) {
+export function getDetails(type, id) {
   return axios
-    .get(`${url}/movie/${id}?api_key=${api_key}&append_to_response=videos`)
+    .get(`${url}/${type}/${id}?api_key=${api_key}&append_to_response=videos`)
     .then((response) => {
       return response.data;
     });
