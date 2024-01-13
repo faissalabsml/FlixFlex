@@ -61,13 +61,16 @@ function Title() {
 
   const {
     title,
+    name,
     backdrop_path,
     poster_path,
     overview,
     release_date,
+    first_air_date,
     vote_average,
     genres,
     runtime,
+    episode_run_time,
     imdb_id,
     videos,
     popularity,
@@ -114,13 +117,17 @@ function Title() {
 
           <div className="title_info">
             <h3 className="title">
-              {title}
-              <span>{release_date.slice(0, 4)}</span>
+              {title || name}
+              <span>
+                {release_date
+                  ? release_date.slice(0, 4)
+                  : first_air_date.slice(0, 4)}
+              </span>
             </h3>
             <p className="title_genres">
               {genres.map((genre) => genre.name).join(", ")}
             </p>
-            <p>{toHoursAndMinutes(runtime)}</p>
+            <p>{toHoursAndMinutes(runtime || episode_run_time)}</p>
             <div>
               <h4>Overview</h4>
               <p>{overview}</p>

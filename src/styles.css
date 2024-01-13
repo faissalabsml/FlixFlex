@@ -121,11 +121,11 @@ section {
 
 .poster_img {
   width: 100%;
-  transition: filter 0.1s ease-in;
+  transition: filter 0.2s ease-in;
 }
 
 .poster_img:hover {
-  filter: blur(2px);
+  filter: brightness(120%);
 }
 
 .poster_info {

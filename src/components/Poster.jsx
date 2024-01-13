@@ -32,7 +32,15 @@ function Posters({ posterInfo }) {
         <p className="poster_vote">
           {vote_average && vote_average.toString().replace(".", "").slice(0, 2)}
         </p>
-        <Link className="poster_title">{title || name}</Link>
+        <Link
+          to={{
+            pathname: "/title",
+            search: searchParams,
+          }}
+          className="poster_title"
+        >
+          {title || name}
+        </Link>
         <p className="poster_date">
           {release_date && release_date.slice(0, 4)}
           {first_air_date && first_air_date.slice(0, 4)}
