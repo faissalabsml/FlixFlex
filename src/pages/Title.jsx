@@ -1,5 +1,6 @@
 import React, { useEffect, useReducer } from "react";
 import { useLocation } from "react-router-dom";
+import { LinkChain, Play } from "@vectopus/atlas-icons-react";
 
 import { getDetails } from "../utils/api";
 import Navbar from "../components/Navbar";
@@ -28,6 +29,13 @@ const initialState = {
   errorMessage: null,
   loading: true,
 };
+
+function toHoursAndMinutes(totalMinutes) {
+  const minutes = totalMinutes % 60;
+  const hours = Math.floor(totalMinutes / 60);
+
+  return `${hours}h${minutes > 0 ? ` ${minutes}m` : ""}`;
+}
 
 function Title() {
   const location = useLocation();
@@ -84,7 +92,7 @@ function Title() {
       <Navbar />
 
       <section
-        className="title"
+        className="title-section"
         style={{ height: backdrop_path ? "auto" : "80vh" }}
       >
         {backdrop_path && (
@@ -105,18 +113,23 @@ function Title() {
           </div>
 
           <div className="title_info">
-            <p>{title}</p>
-            <p>{release_date}</p>
+            <h3 className="title">
+              {title}
+              <span>{release_date.slice(0, 4)}</span>
+            </h3>
             <p className="title_genres">
               {genres.map((genre) => genre.name).join(", ")}
             </p>
-            <p>{runtime}</p>
+            <p>{toHoursAndMinutes(runtime)}</p>
             <div>
-              <h3>Overview</h3>
+              <h4>Overview</h4>
               <p>{overview}</p>
             </div>
-            <p>{vote_average.toString().replace(".", "").slice(0, 2)}</p>
+            <p className="poster_vote">
+              {vote_average.toString().replace(".", "").slice(0, 2)}
+            </p>
             <a href={`https://www.imdb.com/title/${imdb_id}`} target="_blank">
+              <LinkChain size={24} />
               IMDB
             </a>
             {trailer && (
@@ -124,6 +137,7 @@ function Title() {
                 href={`https://www.youtube.com/watch?v=${trailer.key}`}
                 target="_blank"
               >
+                <Play size={24} />
                 Watch trailer
               </a>
             )}
