@@ -5,8 +5,15 @@ const api_key = import.meta.env.VITE_TMDB_KEY;
 const url = "https://api.themoviedb.org/3";
 
 const endpoints = {
-  popular: `${url}/movie/popular?api_key=${api_key}`,
+  popularMovies: `${url}/movie/popular?api_key=${api_key}`,
+  popularShows: `${url}/tv/popular?api_key=${api_key}`,
 };
+
+export function getPosters(type) {
+  return axios.get(endpoints[type]).then((response) => {
+    return response.data.results;
+  });
+}
 
 export function getDetails(id) {
   return axios

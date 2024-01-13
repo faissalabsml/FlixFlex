@@ -4,26 +4,26 @@ import axios from "axios";
 import endpoints from "../utils/api";
 import Posters from "./Posters";
 
-function Main() {
-  const [posters, setPosters] = useState([]);
+function Main({ content }) {
+  // const [posters, setPosters] = useState([]);
 
-  useEffect(() => {
-    axios.get(endpoints.popular).then((response) => {
-      const results = response.data.results;
-      // const nextTop5 = results.slice(0, 5);
+  // useEffect(() => {
+  //   axios.get(endpoints.popular).then((response) => {
+  //     const results = response.data.results;
+  //     // const nextTop5 = results.slice(0, 5);
 
-      setPosters(results);
+  //     setPosters(results);
 
-      console.log(results);
-    });
-  }, []);
+  //     console.log(results);
+  //   });
+  // }, []);
 
-  if (!posters) return <p>Fetching...</p>;
+  // if (!posters) return <p>Fetching...</p>;
 
   return (
     <section className="posters">
       <h2 className="section_title">Trending</h2>
-      <Posters postersList={posters} />
+      <Posters postersList={content} />
     </section>
   );
 }

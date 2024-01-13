@@ -2,7 +2,7 @@ import React, { useEffect, useReducer } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 
-import endpoints from "../utils/api";
+import endpoints, { getPosters } from "../utils/api";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Main from "../components/Main";
@@ -37,17 +37,25 @@ function Home() {
 
   const contents =
     location.pathname === "/" || location.pathname === "/movies"
-      ? "movies"
-      : "tvshows";
+      ? "popularMovies"
+      : "popularShows";
 
   const [state, dispatch] = useReducer(postersReducer, initialState);
 
-  useEffect(() => {
-    axios
-      .get(endpoints.popular)
-      .then((response) => {
-        const results = response.data.results;
+  // useEffect(() => {
+  //   axios
+  //     .get(endpoints.popular)
+  //     .then((response) => {
+  //       const results = response.data.results;
 
+  //       dispatch({ type: "success", posters: results });
+  //     })
+  //     .catch(({ message }) => dispatch({ type: "error", message }));
+  // }, [contents]);
+
+  useEffect(() => {
+    getPosters(contents)
+      .then((results) => {
         dispatch({ type: "success", posters: results });
       })
       .catch(({ message }) => dispatch({ type: "error", message }));
@@ -64,7 +72,7 @@ function Home() {
 
       <Hero content={state.posters} />
 
-      <Main />
+      <Main content={state.posters} />
     </>
   );
 }
