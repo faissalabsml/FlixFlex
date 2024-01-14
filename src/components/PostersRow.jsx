@@ -36,7 +36,7 @@ function PostersRow({ sortBy, title }) {
   useEffect(() => {
     getPosters(sortBy)
       .then((results) => {
-        dispatch({ type: "success", posters: results });
+        dispatch({ type: "success", posters: results.slice(0, 10) });
       })
       .catch(({ message }) => dispatch({ type: "error", message }));
   }, []);
