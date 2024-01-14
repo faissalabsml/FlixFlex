@@ -35,7 +35,7 @@ function Navbar() {
       </div>
 
       <div className="navbar_account">
-        <Link to="/" className="navbar_link navbar_account_button">
+        <Link to="/login" className="navbar_link navbar_account_button">
           Login
         </Link>
       </div>
