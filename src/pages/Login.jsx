@@ -2,13 +2,13 @@ import React from "react";
 
 import Form from "../components/Form";
 
-function Login() {
+function LogIn() {
   return (
     <>
       <h1>FlixFlex.</h1>
-      <Form type="login" />
+      <Form text="log in" type="login" />
     </>
   );
 }
 
-export default Login;
+export default LogIn;

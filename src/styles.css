@@ -9,6 +9,7 @@ html {
   --color-black: hsl(200, 98%, 3%);
   --color-white: hsl(0, 0%, 100%);
   --color-white-light: hsla(0, 0%, 100%, 0.7);
+  --color-error: hsl(0, 78%, 47%);
 
   --padding-x: 0.7em;
   --padding-y: 0.5em;
@@ -291,6 +292,8 @@ section {
   bottom: 2em;
   left: 50%;
   transform: translateX(-50%);
+  width: 100%;
+  text-align: center;
 }
 
 .form_footer p,
@@ -306,4 +309,10 @@ section {
 
 .form_footer a:hover {
   color: var(--color-main);
+}
+
+.error-message {
+  color: var(--color-error);
+  margin-top: 1.5em;
+  text-align: center;
 }

@@ -1,14 +1,45 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
-function Form({ type }) {
-  const redirect = type === "login" ? "signup" : "login";
+import { UserAuth } from "../contexts/AuthContext";
+
+function Form({ text, type }) {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const { user, firebaseLogin, firebaseSignup } = UserAuth();
+  const navigate = useNavigate();
+  const location = useLocation().pathname;
+  console.log(location);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    if (location === "/login") {
+      try {
+        await firebaseLogin(`${username}@gmail.com`, password);
+        navigate("/");
+      } catch (error) {
+        setErrorMessage(error.message);
+      }
+    }
+
+    if (location === "/signup") {
+      try {
+        await firebaseSignup(`${username}@gmail.com`, password);
+        navigate("/");
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
 
   return (
     <>
       <div className="form-container">
-        <h2>{type}</h2>
-        <form className="form">
+        <h2>{text}</h2>
+        <form className="form" onSubmit={handleSubmit}>
           <div className="input_row">
             <label htmlFor="username">Username</label>
             <input
@@ -17,6 +48,8 @@ function Form({ type }) {
               id="username"
               placeholder="Enter username"
               required
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
 
@@ -28,15 +61,22 @@ function Form({ type }) {
               id="password"
               placeholder="Enter password"
               required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
-          <button>{type}</button>
+          <button>{text}</button>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
         </form>
 
         <div className="form_footer">
-          <p>{redirect === "login" ? "Already a user?" : "No account?"}</p>
-          <Link to={`/${redirect}`}>{redirect}</Link>
+          <p>
+            {type === "login" ? "Don't have an account?" : "Already a user?"}
+          </p>
+          <Link to={`/${type === "login" ? "signup" : "login"}`}>
+            {type === "login" ? "sign up" : "log in"}
+          </Link>
         </div>
       </div>
     </>
