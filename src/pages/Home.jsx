@@ -5,7 +5,7 @@ import axios from "axios";
 import endpoints, { getPosters } from "../utils/api";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
-import Main from "../components/Main";
+import PostersRow from "../components/PostersRow";
 import Loading from "../components/Loading";
 
 const postersReducer = (state, action) => {
@@ -42,17 +42,6 @@ function Home() {
 
   const [state, dispatch] = useReducer(postersReducer, initialState);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(endpoints.popular)
-  //     .then((response) => {
-  //       const results = response.data.results;
-
-  //       dispatch({ type: "success", posters: results });
-  //     })
-  //     .catch(({ message }) => dispatch({ type: "error", message }));
-  // }, [contents]);
-
   useEffect(() => {
     getPosters(contents)
       .then((results) => {
@@ -72,7 +61,7 @@ function Home() {
 
       <Hero content={state.posters} />
 
-      <Main content={state.posters} />
+      <PostersRow content={state.posters} title="popular" />
     </>
   );
 }

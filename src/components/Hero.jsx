@@ -24,15 +24,10 @@ function Hero({ content }) {
   return (
     <>
       <h1>Browse movies and TV shows</h1>
-      <section className="top5">
+      {/* <section className="top5">
         <h2 className="section_title">Top 5</h2>
         <Posters postersList={posters} />
-        {/* <ul className="posters_list">
-          {content.slice(0, 5).map((poster) => (
-            <Posters key={poster.id} posterInfo={poster} top5={true} />
-          ))}
-        </ul> */}
-      </section>
+      </section> */}
     </>
   );
 }
