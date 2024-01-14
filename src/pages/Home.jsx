@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import Navbar from "../components/Navbar";
@@ -28,6 +28,7 @@ function Home() {
       ? "moviesLists"
       : "TVShowsLists";
 
+  console.log(moviesAndTVShowsLists[currentList]);
   return (
     <>
       <Navbar />

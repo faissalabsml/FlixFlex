@@ -5,6 +5,7 @@ import { getPosters } from "../utils/api";
 
 function Hero({ type }) {
   const [top5, setTop5] = useState([]);
+
   const popularEndpoint = type.find((ele) =>
     ele.endpoint.startsWith("popular")
   );
@@ -30,7 +31,7 @@ function Hero({ type }) {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [popularEndpoint]);
 
   // if (!top5) return <p>Fetching...</p>;
 
