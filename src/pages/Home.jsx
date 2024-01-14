@@ -1,67 +1,46 @@
-import React, { useEffect, useReducer } from "react";
+import React from "react";
 import { useLocation } from "react-router-dom";
-import axios from "axios";
 
-import endpoints, { getPosters } from "../utils/api";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import PostersRow from "../components/PostersRow";
-import Loading from "../components/Loading";
 
-const postersReducer = (state, action) => {
-  if (action.type === "success") {
-    return {
-      ...state,
-      posters: action.posters,
-      loading: false,
-    };
-  } else if (action.type === "error") {
-    return {
-      ...state,
-      errorMessage: action.message,
-      loading: false,
-    };
-  } else {
-    throw new Error("Action type is not supported");
-  }
-};
-
-const initialState = {
-  posters: [],
-  errorMessage: null,
-  loading: true,
+const moviesAndTVShowsLists = {
+  moviesLists: [
+    { endpoint: "nowPlayingMovies", title: "Now Playing Movies" },
+    { endpoint: "popularMovies", title: "Popular Movies" },
+    { endpoint: "topRatedMovies", title: "Top Rated Movies" },
+    { endpoint: "upcomingMovies", title: "Up coming Movies" },
+  ],
+  TVShowsLists: [
+    { endpoint: "airingTodayTVShows", title: "Airing Today TV Shows" },
+    { endpoint: "onTheAirTVShows", title: "On The Air TV Shows" },
+    { endpoint: "popularTVShows", title: "Popular TV Shows" },
+    { endpoint: "topRatedTVShows", title: "Top Rated TV Shows" },
+  ],
 };
 
 function Home() {
   const location = useLocation();
 
-  const contents =
+  const currentList =
     location.pathname === "/" || location.pathname === "/movies"
-      ? "popularMovies"
-      : "popularTVShows";
-
-  const [state, dispatch] = useReducer(postersReducer, initialState);
-
-  useEffect(() => {
-    getPosters(contents)
-      .then((results) => {
-        dispatch({ type: "success", posters: results });
-      })
-      .catch(({ message }) => dispatch({ type: "error", message }));
-  }, [contents]);
-
-  if (state.loading) return <Loading text="Loading Posters" />;
-
-  if (state.errorMessage)
-    return <p className="message">{state.errorMessage}</p>;
+      ? "moviesLists"
+      : "TVShowsLists";
 
   return (
     <>
       <Navbar />
 
-      <Hero content={state.posters} />
+      <Hero type={moviesAndTVShowsLists[currentList]} />
 
-      <PostersRow content={state.posters} title="popular" />
+      {moviesAndTVShowsLists[currentList].map((list) => (
+        <PostersRow
+          key={list.endpoint}
+          sortBy={list.endpoint}
+          title={list.title}
+        />
+      ))}
     </>
   );
 }
