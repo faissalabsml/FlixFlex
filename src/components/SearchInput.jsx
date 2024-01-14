@@ -13,7 +13,7 @@ function SearchInput() {
   }
 
   return (
-    <form className="search" onSubmit={(e) => handleSubmit(e)}>
+    <form className="navbar_search" onSubmit={(e) => handleSubmit(e)}>
       <input
         type="text"
         required

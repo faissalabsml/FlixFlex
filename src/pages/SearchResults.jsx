@@ -38,7 +38,11 @@ function SearchResults() {
   useEffect(() => {
     getSearchResults(query)
       .then((res) => {
-        dispatch({ type: "success", searchResults: res.results });
+        const filteredResults = res.results.filter(
+          (result) => result.popularity > 5 && result.vote_average > 1
+        );
+
+        dispatch({ type: "success", searchResults: filteredResults });
         console.log(state.searchResults);
       })
       .catch(({ message }) => dispatch({ type: "error", message }));
@@ -49,12 +53,17 @@ function SearchResults() {
   if (state.errorMessage)
     return <p className="message">{state.errorMessage}</p>;
 
+  console.log(state.searchResults);
   return (
     <>
       <Navbar />
-      <section className="posters">
+      <section className="posters search-results">
         <h2 className="section_title">Search results for: {query}</h2>
-        <Posters postersList={state.searchResults} />
+        {state.searchResults.length === 0 ? (
+          <p>Sorry we couldn't find anything</p>
+        ) : (
+          <Posters postersList={state.searchResults} />
+        )}
       </section>
     </>
   );

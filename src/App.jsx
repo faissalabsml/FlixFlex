@@ -7,7 +7,7 @@ import SearchResults from "./pages/SearchResults";
 
 function App() {
   return (
-    <>
+    <div className="container">
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/movies" element={<Home />} />
@@ -19,7 +19,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
       </Routes>
-    </>
+    </div>
   );
 }
 

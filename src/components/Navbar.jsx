@@ -19,7 +19,7 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <div className="navbar_links">
+      <div className="navbar_left">
         <Link to="/" className="navbar_logo">
           FlixFlex.
         </Link>
@@ -33,23 +33,22 @@ function Navbar() {
         </div>
       </div>
 
-      <div className="navbar_search">
+      <div className="navbar_right">
         <SearchInput />
-      </div>
-
-      <div className="navbar_account">
-        {user?.email ? (
-          <button
-            className="navbar_link navbar_account_button"
-            onClick={handleLogout}
-          >
-            Logout
-          </button>
-        ) : (
-          <Link to="/login" className="navbar_link navbar_account_button">
-            Login
-          </Link>
-        )}
+        <div className="navbar_account">
+          {user?.email ? (
+            <button
+              className="navbar_link navbar_account_button"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          ) : (
+            <Link to="/login" className="navbar_link navbar_account_button">
+              Login
+            </Link>
+          )}
+        </div>
       </div>
     </nav>
   );

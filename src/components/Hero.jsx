@@ -42,7 +42,7 @@ function Hero({ type }) {
     <>
       <h1>Browse movies and TV shows</h1>
       <section className="top5">
-        <h2 className="section_title">Top 5</h2>
+        <h2 className="section_title">Current Top 5</h2>
         <Posters postersList={top5} />
       </section>
     </>

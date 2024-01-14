@@ -89,15 +89,12 @@ function Title() {
       </>
     );
   }
-
+  // style={{ height: backdrop_path ? "auto" : "80vh" }}
   return (
     <>
       <Navbar />
 
-      <section
-        className="title-section"
-        style={{ height: backdrop_path ? "auto" : "80vh" }}
-      >
+      <section className="title-section">
         {backdrop_path && (
           <img
             src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
@@ -109,7 +106,7 @@ function Title() {
         <div className="title_details">
           <div className="title_poster">
             <img
-              src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+              src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
               alt={title}
               className="title_img"
             />
@@ -128,7 +125,7 @@ function Title() {
               {genres.map((genre) => genre.name).join(", ")}
             </p>
             <p>{toHoursAndMinutes(runtime || episode_run_time)}</p>
-            <div>
+            <div className="title_overview">
               <h4>Overview</h4>
               <p>{overview}</p>
             </div>
