@@ -53,7 +53,6 @@ function SearchResults() {
   if (state.errorMessage)
     return <p className="message">{state.errorMessage}</p>;
 
-  console.log(state.searchResults);
   return (
     <>
       <Navbar />

@@ -2,26 +2,12 @@ import React, { useEffect, useState } from "react";
 
 import Posters from "./Posters";
 import { getPosters } from "../utils/api";
+import Loading from "../components/Loading";
 
 function Hero({ type }) {
   const [top5, setTop5] = useState([]);
 
-  const popularEndpoint = type.find((ele) =>
-    ele.endpoint.startsWith("popular")
-  );
-
-  console.log(popularEndpoint);
-
-  // useEffect(() => {
-  //   axios.get(endpoints.popular).then((response) => {
-  //     const results = response.data.results;
-  //     const nextTop5 = results.slice(0, 5);
-
-  //     setTop5(results.slice(0, 5));
-
-  //     console.log(nextTop5);
-  //   });
-  // }, []);
+  const popularEndpoint = type.find((el) => el.endpoint.startsWith("popular"));
 
   useEffect(() => {
     getPosters(popularEndpoint.endpoint)
@@ -33,10 +19,7 @@ function Hero({ type }) {
       });
   }, [popularEndpoint]);
 
-  // if (!top5) return <p>Fetching...</p>;
-
-  // const posters = content.slice(0, 5);
-  // console.log(posters);
+  if (!top5) return <Loading text="Loading Top 5" />;
 
   return (
     <>

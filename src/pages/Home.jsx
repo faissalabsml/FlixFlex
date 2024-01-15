@@ -28,7 +28,6 @@ function Home() {
       ? "moviesLists"
       : "TVShowsLists";
 
-  console.log(moviesAndTVShowsLists[currentList]);
   return (
     <>
       <Navbar />

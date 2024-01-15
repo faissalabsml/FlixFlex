@@ -27,6 +27,7 @@ function Posters({ posterInfo }) {
           alt={title}
           className="poster_img"
         />
+        <div className="poster_img_overlay">View details</div>
       </Link>
       <div className="poster_info">
         <p className="poster_vote">

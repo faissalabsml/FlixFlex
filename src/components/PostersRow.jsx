@@ -31,8 +31,6 @@ const initialState = {
 function PostersRow({ sortBy, title }) {
   const [state, dispatch] = useReducer(postersReducer, initialState);
 
-  console.log(sortBy);
-
   useEffect(() => {
     getPosters(sortBy)
       .then((results) => {

@@ -78,7 +78,6 @@ function Title() {
 
   const trailer =
     videos.results.find((video) => video.type === "Trailer") || videos[1];
-  console.log(trailer);
 
   if (vote_average === 0 || popularity < 1) {
     return (
@@ -89,7 +88,7 @@ function Title() {
       </>
     );
   }
-  // style={{ height: backdrop_path ? "auto" : "80vh" }}
+
   return (
     <>
       <Navbar />

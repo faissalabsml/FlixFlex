@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
 import { UserAuth } from "../contexts/AuthContext";
+
 
 function Form({ text, type }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const { user, firebaseLogin, firebaseSignup } = UserAuth();
+  const { firebaseLogin, firebaseSignup } = UserAuth();
   const navigate = useNavigate();
   const location = useLocation().pathname;
-  console.log(location);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -20,8 +19,8 @@ function Form({ text, type }) {
       try {
         await firebaseLogin(`${username}@gmail.com`, password);
         navigate("/");
-      } catch (error) {
-        setErrorMessage(error.message);
+      } catch ({ message }) {
+        setErrorMessage(message);
       }
     }
 
@@ -29,8 +28,8 @@ function Form({ text, type }) {
       try {
         await firebaseSignup(`${username}@gmail.com`, password);
         navigate("/");
-      } catch (error) {
-        console.log(error);
+      } catch ({ message }) {
+        setErrorMessage(message);
       }
     }
   }

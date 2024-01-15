@@ -10,14 +10,12 @@ function Posters({ postersList }) {
   const containerRef = useRef();
 
   function handleScroll(amount) {
-    // setScrollPosition((prevPos) => prevPos + amount);
     const newScrollPosition = scrollPosition + amount;
 
     setScrollPosition(newScrollPosition);
 
     containerRef.current.scrollLeft = newScrollPosition;
 
-    console.log(scrollPosition);
   }
 
   return (
