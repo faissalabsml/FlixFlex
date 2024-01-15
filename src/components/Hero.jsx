@@ -41,7 +41,7 @@ function Hero({ type }) {
         dispatch({ type: "success", top5: results.slice(0, 5) });
       })
       .catch(({ message }) => dispatch({ type: "error", message }));
-  }, []);
+  }, [location]);
 
   if (state.loading) return <Loading text="Loading" />;
 
