@@ -1,6 +1,6 @@
 # FlixFlex
 
-Hi! This is my work in the movie app FlixFlex 
+Hi! This is my work in the movie app FlixFlex
 
 [FlixFlex](https://flixflex-77b18.web.app/)
 
@@ -19,16 +19,16 @@ For deployment, I went with Netlify.
 
 ## What I learned
 
-* Firebase authentication.
-* Using the TMDB API.
-* How to build a horizontal scrolling element.
+- Firebase authentication.
+- Using the TMDB API.
+- How to build a horizontal scrolling element.
 
 ## What I practised
 
-* Axios and how to fetch.
-* React useReducer, useState and useEffect.
-* React router, useLocation and useNavigate.
-* CSS Flexbox and variables.
+- Axios and how to fetch.
+- React useReducer, useState and useEffect.
+- React router, useLocation and useNavigate.
+- CSS Flexbox and variables.
 
 ## My process
 
