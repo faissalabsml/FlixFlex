@@ -184,7 +184,7 @@ section {
 }
 
 .poster_img:hover {
-  filter: brightness(70%) blur(1px);
+  filter: brightness(70%) blur(2px);
 }
 
 .poster_img:hover + .poster_img_overlay {
@@ -284,6 +284,10 @@ section {
 
 .title_background {
   filter: brightness(15%);
+  aspect-ratio: 16 / 9;
+  width: 90%;
+  height: auto;
+  margin: 0 auto;
 }
 
 .title_details {
@@ -293,12 +297,12 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 3em;
+  gap: 1.5em;
   z-index: 20;
 }
 
 .title_poster {
-  flex: 0 1 30%;
+  flex: 0 1 22%;
 }
 
 .title_info {
@@ -324,7 +328,11 @@ section {
   list-style: none;
 }
 
-.title_overview p {
+.title_overview {
+  margin: 0.8em 0 1.5em 0;
+}
+
+.title_overview {
   max-width: 65ch;
 }
 
@@ -341,6 +349,16 @@ section {
   display: flex;
   gap: 0.5em;
   align-items: center;
+}
+
+.trailer {
+  text-align: center;
+}
+
+.trailer iframe {
+  aspect-ratio: 16 / 9;
+  height: auto;
+  width: 90%;
 }
 
 .form-container {
@@ -480,10 +498,13 @@ section {
   }
 
   .title_details {
+    position: unset;
+    transform: unset;
     flex-direction: column;
-    left: 50%;
-    transform: translateY(0);
-    transform: translateX(-50%);
+  }
+
+  .title_poster img {
     width: 80%;
+    margin: 0 auto;
   }
 }

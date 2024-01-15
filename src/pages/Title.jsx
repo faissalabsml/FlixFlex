@@ -112,41 +112,48 @@ function Title() {
           </div>
 
           <div className="title_info">
-            <h3 className="title">
-              {title || name}
-              <span>
-                {release_date
-                  ? release_date.slice(0, 4)
-                  : first_air_date.slice(0, 4)}
-              </span>
-            </h3>
-            <p className="title_genres">
-              {genres.map((genre) => genre.name).join(", ")}
-            </p>
-            <p>{toHoursAndMinutes(runtime || episode_run_time)}</p>
-            <div className="title_overview">
-              <h4>Overview</h4>
-              <p>{overview}</p>
+            <div className="title_info_header">
+              <h3 className="title">
+                {title || name}
+                <span>
+                  {release_date
+                    ? release_date.slice(0, 4)
+                    : first_air_date.slice(0, 4)}
+                </span>
+              </h3>
+              <p className="title_genres">
+                {genres.map((genre) => genre.name).join(", ")}
+              </p>
+              <p>{toHoursAndMinutes(runtime || episode_run_time)}</p>
             </div>
             <p className="poster_vote">
               {vote_average.toString().replace(".", "").slice(0, 2)}
             </p>
-            <a href={`https://www.imdb.com/title/${imdb_id}`} target="_blank">
-              <LinkChain size={24} />
-              IMDB
-            </a>
-            {trailer && (
-              <a
-                href={`https://www.youtube.com/watch?v=${trailer.key}`}
-                target="_blank"
-              >
-                <Play size={24} />
-                Watch trailer
+            <div className="title_overview">
+              <h4>Overview</h4>
+              <p>{overview}</p>
+            </div>
+            <div className="title_info_footer">
+              <a href={`https://www.imdb.com/title/${imdb_id}`} target="_blank">
+                <LinkChain size={24} />
+                IMDB
               </a>
-            )}
+            </div>
           </div>
         </div>
       </section>
+
+      {trailer && (
+        <div className="trailer">
+          <iframe
+            src={`https://www.youtube.com/embed/${trailer.key}`}
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+      )}
     </>
   );
 }
