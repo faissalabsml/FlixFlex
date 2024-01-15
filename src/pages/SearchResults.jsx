@@ -1,10 +1,10 @@
 import React, { useEffect, useReducer } from "react";
 import { useParams } from "react-router-dom";
 
-import Navbar from "../components/Navbar";
 import Loading from "../components/Loading";
 import Posters from "../components/Posters";
 import { getSearchResults } from "../utils/api";
+import Navbar from "../components/Navbar";
 
 const searchResultsReducer = (state, action) => {
   if (action.type === "success") {
@@ -43,7 +43,6 @@ function SearchResults() {
         );
 
         dispatch({ type: "success", searchResults: filteredResults });
-        console.log(state.searchResults);
       })
       .catch(({ message }) => dispatch({ type: "error", message }));
   }, [query]);

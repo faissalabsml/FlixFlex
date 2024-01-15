@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Form from "../components/Form";
-import Navbar from "../components/Navbar";
+import UserForm from "../components/UserForm";
 
 function Signup() {
   return (
@@ -10,7 +9,7 @@ function Signup() {
       <h1>
         <Link to="/">FlixFlex.</Link>
       </h1>
-      <Form text="sign up" type="signup" />
+      <UserForm text="sign up" type="signup" />
     </>
   );
 }

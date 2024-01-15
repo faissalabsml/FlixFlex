@@ -37,5 +37,3 @@ export function getSearchResults(query) {
       return response.data;
     });
 }
-
-export default endpoints;

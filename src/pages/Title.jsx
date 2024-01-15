@@ -1,10 +1,10 @@
 import React, { useEffect, useReducer } from "react";
 import { useLocation } from "react-router-dom";
-import { LinkChain, Play } from "@vectopus/atlas-icons-react";
+import { LinkChain } from "@vectopus/atlas-icons-react";
 
 import { getDetails } from "../utils/api";
-import Navbar from "../components/Navbar";
 import Loading from "../components/Loading";
+import Navbar from "../components/Navbar";
 
 const titleReducer = (state, action) => {
   if (action.type === "success") {
@@ -48,7 +48,6 @@ function Title() {
   useEffect(() => {
     getDetails(type, titleId)
       .then((result) => {
-        console.log(result);
         dispatch({ type: "success", title: result });
       })
       .catch(({ message }) => dispatch({ type: "error", message }));
@@ -80,19 +79,12 @@ function Title() {
     videos.results.find((video) => video.type === "Trailer") || videos[1];
 
   if (vote_average === 0 || popularity < 1) {
-    return (
-      <>
-        <Navbar />
-
-        <h2 className="section_title">Sorry, not enough data available</h2>
-      </>
-    );
+    return <h2 className="section_title">Sorry, not enough data available</h2>;
   }
 
   return (
     <>
       <Navbar />
-
       <section className="title-section">
         {backdrop_path && (
           <img
@@ -148,9 +140,9 @@ function Title() {
           <iframe
             src={`https://www.youtube.com/embed/${trailer.key}`}
             title="YouTube video player"
-            frameborder="0"
+            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
+            allowFullScreen
           ></iframe>
         </div>
       )}

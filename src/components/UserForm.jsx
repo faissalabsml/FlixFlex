@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserAuth } from "../contexts/AuthContext";
 
-
 function Form({ text, type }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -18,6 +17,7 @@ function Form({ text, type }) {
     if (location === "/login") {
       try {
         await firebaseLogin(`${username}@gmail.com`, password);
+        setLoading(true);
         navigate("/");
       } catch ({ message }) {
         setErrorMessage(message);
@@ -27,6 +27,7 @@ function Form({ text, type }) {
     if (location === "/signup") {
       try {
         await firebaseSignup(`${username}@gmail.com`, password);
+
         navigate("/");
       } catch ({ message }) {
         setErrorMessage(message);

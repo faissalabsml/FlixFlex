@@ -45,6 +45,10 @@ select {
   box-shadow: none;
 }
 
+button {
+  cursor: pointer;
+}
+
 p,
 h1,
 h2,
