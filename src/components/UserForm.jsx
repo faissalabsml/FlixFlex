@@ -17,7 +17,6 @@ function Form({ text, type }) {
     if (location === "/login") {
       try {
         await firebaseLogin(`${username}@gmail.com`, password);
-        setLoading(true);
         navigate("/");
       } catch ({ message }) {
         setErrorMessage(message);
